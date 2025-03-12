@@ -2,12 +2,33 @@
 #include <math.h>
 #include <stdlib.h>
 #include <time.h>
+#define NUM_NOMES 7
+#define NUM_OPCOES 5
+
+void mostrarNomes(const char nomes[NUM_NOMES][20]) {
+    printf("Nomes disponíveis:\n");
+    for (int i = 0; i < NUM_NOMES; i++) {
+        printf("%d - %s\n", i + 1, nomes[i]);
+    }
+}
+
+void mostrarOpcoes(int opcoesDisponiveis[NUM_OPCOES]) {
+    printf("Opções disponíveis:\n");
+    for (int i = 0; i < NUM_OPCOES; i++) {
+        if (opcoesDisponiveis[i]) {
+            printf("%d - Opcao %d\n", i + 1, i + 1);
+        }
+    }
+}
 
 int main(int argc, char** argv)
 {
 	int opcao1;
     char opcao2;
 	int n1, n2, n3;
+	int retrun1, return2, return3;
+do{	
+do{
 	printf("1: Pergunta e resposta\n ");
 	printf("2: Cobra na caixa\n");
 	printf("3: Gousmas war\n");
@@ -41,56 +62,102 @@ int main(int argc, char** argv)
 			
 		}
 		while(n1 == 1);
-	
+		
+ printf("voce dejeja retornar ao lobby? 1(sim) 0(nao)" );
+ scanf("%d", &return1);		
+ }while(return1 == 1);	
 	int p1, p2;		
-    
+ 
+ 
+ 
 	}
+	
     else if(opcao1 == 2)
-    	do{
-		printf("Escolha os seus personagens:\n ");
-		printf("1)Jack Sparrow\n");
-		printf("Desc.: O maior pirata dos sete mares agora vai em busca de mais um tesouro para a sua colecao\n\n");
-		
-		printf("2)Kiko\n");
-		printf("Desc.: Detentor da bola quadrada, filho de marinheiro e o tesouro da dona Florinda esse sujeito tenta mais uma vez ser o melhor, apos descobrir que o chaves conseguiu uma moeda de prata\n\n");
-		
-        printf("3)Indiana Jones\n");
-		printf("Desc.: O maior cacador de tesouros e desbravador de tumbas do planeta. Sera que vai conseguir botar mais uma no seu curriculo??? \n\n");
-		
-		printf("4)Anrsene Lupin\n");
-		printf("Desc.: O maior ladrao de Paris e dentre todas a suas facanhas hoje ele tenta abrir os seus horizontes no Egito\n\n");	
+	do{
+    char nomes[NUM_NOMES][20] = {
+        "Alice", "Bruno", "Carlos", "Diana", "Eduardo", "Fernanda", "Gabriel"
+    };
+    
+    int opcoesDisponiveis[NUM_OPCOES] = {1, 1, 1, 1, 1}; // Todas as opções disponíveis
+    
+    int escolhaJogador1, escolhaJogador2;
+    
+       // Jogador 1 escolhe um nome
+       mostrarNomes(nomes);
+        printf("Jogador 1, escolha um nome pelo número: ");
+        scanf("%d", &escolhaJogador1);
+        escolhaJogador1--; // Ajustando para índice do array
+
+        // Jogador 2 escolhe um nome
+        mostrarNomes(nomes);
+        printf("Jogador 2, escolha um nome pelo número: ");
+        scanf("%d", &escolhaJogador2);
+        escolhaJogador2--; // Ajustando para índice do array
+
+        printf("\nJogador 1 escolheu: %s\n", nomes[escolhaJogador1]);
+        printf("Jogador 2 escolheu: %s\n", nomes[escolhaJogador2]);
+    
+    srand(time(NULL)); // Inicializa a semente para gerar números aleatórios diferentes a cada execução
+            int numero1 = (rand() % 5) + 1; // Gera um número entre 1 e 5
+            int numero2 = (rand() % 5)+ 1;
+            if(numero1 == numero2)
+       	    {
+    		    numero2 = (rand() % 5)+ 1;
+      	    }
+  	    
+        int turno = 1, escolha;
+    
+        // Jogo continua enquanto houver opções disponíveis
+        while (1) {
+            mostrarOpcoes(opcoesDisponiveis);
+            
+            printf("Jogador %d, escolha uma opcoo pelo numero: ", turno);
+            scanf("%d", &escolha);
+            escolha--; // Ajuste de índice
+        
+            if(escolha == numero1){
+    		printf("o jogador  escolheu a cobra, voce perdeu\n");
+    		printf("o outro jogador levou o tesouro\n");	
+    		break;	
+    		}
+    		else if(escolha == numero2){
+    			printf("o jogador achou o botao e escapou da armadilha\n");
+    			break;
 			
-		printf("5)Han Solo\n");
-		printf("Desc.: O maior cacador de recompensas da galaxia, tenta mais uma vez provar que e o melhor \n\n");
 		
-		printf("6)Rainha Elizabeth\n");
-		printf("Desc.: Todos pensavam que ela nao estava mais entre nos, porem apos colecionar inumeros artefatos desde a era pre-cambriana ela retorna para ter mais um em sua colecao\n\n");
+    		}
+    		else if (escolha < 0 || escolha >= NUM_OPCOES || !opcoesDisponiveis[escolha]) {
+                printf("Opção inválida! Escolha novamente.\n");
+                continue;
+        
+        
+            opcoesDisponiveis[escolha] = 0; // Removendo a opção escolhida
+        
+            // Verifica se todas as opções foram escolhidas
+            int opcoesRestantes = 0;
+            for (int i = 0; i < NUM_OPCOES; i++) {
+            if (opcoesDisponiveis[i]) {
+                opcoesRestantes = 1;
+                    break;
+                }
+            }
+
+             if (!opcoesRestantes) {
+                printf("Todas as opções foram escolhidas. Fim do jogo!\n");
+                 break;
+            }
+
+            turno = (turno == 1) ? 2 : 1; // Alternando entre os jogadores	
 		
-		printf("7)exterminador do futuro\n");
-		printf("Desc.: \n\n");
-		
-		scanf("%d", &p1);
-		scanf("%d", &p2);
-		
-		//texto para historia
-		printf("algo\n\n");
-		
-		
-        srand(time(NULL)); // Inicializa a semente para gerar números aleatórios diferentes a cada execução
-        int numero1 = (rand() % 5) + 1; // Gera um número entre 1 e 5
-        int numero2 = (rand() % 5)+ 1;
-        if(numero1 == numero2)
-   	    {
-		    numero2 = (rand() % 5)+ 1;
-  	    }
-		int	a, b, c, d, e;
-				
-		
-		printf("Voce deseja jogar de novo? 1 (Sim)  0 (nao)");
-		scanf("%d", &n2);
-		}
-		while(n2 == 1);
-		 
+    		}  
+     	} 
+    	printf("voce deseja jogar de novo? 1(sim) 0 (nao)");
+    	scanf("%d", &n2);
+	
+   	}while(n2 == 1);
+ printf("voce dejeja retornar ao lobby? 1(sim) 0(nao)" );
+ scanf("%d", &return2);		
+ }while(return2 == 1);			 
 	
 	
 	return 0;
