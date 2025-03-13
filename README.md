@@ -28,7 +28,7 @@ JOGO 2 : Cobra na Caixa!
 
 
 
-JOGO 3 : Gousmas War 
+JOGO 3 : Gousmas War; 
 Neste jogo de estratégia, os jogadores controlam criaturas chamadas
 Gousmas, que podem se dividir e acumular fúria ao serem atacadas.
 ● Cada jogador inicia com duas Gousmas, cada uma com nível de fúria 1.
