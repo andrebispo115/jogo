@@ -24,7 +24,7 @@ void mostrarOpcoes(int opcoesDisponiveis[NUM_OPCOES]) {
 int main(int argc, char** argv)
 {
 	int opcao1;
-    char opcao2;
+    char o2, o1, o3, o4, o5;
 	int n1, n2, n3;
 	int return1, return2, return3;
 do{	
@@ -42,12 +42,12 @@ do{
 			printf("a) 1\n");
 			printf("b) 2\n");
 			printf("c) 7\n");
-			scanf(" %c",&opcao2);
-			if(opcao2 == 'b')
+			scanf(" %c",&o2);
+			if(o2 == 'b')
 			{
 			printf("Voce acertou!!!!!\n");
 			}
-			else if(opcao2 == 'a' || opcao2 == 'c')
+			else if(o2 == 'a' || o2 == 'c')
 			{
 				printf("Voce errou ;-;\n");
 			}
@@ -56,6 +56,80 @@ do{
 				printf("escolha uma da alternativas mostradas\n");	
 			}
 		
+		printf("como surgiu o papai noel?\n");
+			printf("a) um grupo de caridade que dava presentes as pessoas \n");
+			printf("b) um velho do polo norte que entrega presentes pelo mundo \n");
+			printf("c) um bispo que entrgava presentes para as pessoas da sua cidade \n");
+			scanf(" %c",&o1);
+			if(o1 == 'c')
+			{
+			printf("Voce acertou!!!!!\n");
+			}
+			else if(o1 == 'a' || o1 == 'b')
+			{
+				printf("Voce errou ;-;\n");
+			}
+			else
+			{
+				printf("escolha uma da alternativas mostradas\n");	
+			}
+			
+			printf("o ques significa as cores da barbearia (vermelho, azul e branco)?\n");
+			printf("a) barba, cabelo e bigode\n");
+			printf("b) tem relacao com a sangria e as vestimentas \n");
+			printf("c) as cores da bendeira estadunidense \n");
+			scanf(" %c",&o3);
+			if(o3 == 'b')
+			{
+			printf("Voce acertou!!!!! --> antigamente se pensava que as pessoas com energias negativas ou nao estarem bem mentalmente ao fazerem cortes especificos no pulso e antebraco elas iriam melhorar  \n");
+			}
+			else if(o3 == 'a' || o3 == 'c')
+			{
+				printf("Voce errou ;-;\n");
+			}
+			else
+			{
+				printf("escolha uma da alternativas mostradas\n");	
+			}
+			
+			printf("quanto eh 1 + 1\n");
+			printf("a) 1\n");
+			printf("b) 2\n");
+			printf("c) 7\n");
+			scanf(" %c",&o2);
+			if(o4 == 'b')
+			{
+			printf("Voce acertou!!!!!\n");
+			}
+			else if(o4 == 'a' || o4 == 'c')
+			{
+				printf("Voce errou ;-;\n");
+			}
+			else
+			{
+				printf("escolha uma da alternativas mostradas\n");	
+			}
+			
+			printf("quanto eh 1 + 1\n");
+			printf("a) 1\n");
+			printf("b) 2\n");
+			printf("c) 7\n");
+			scanf(" %c",&o5);
+			if(o5 == 'b')
+			{
+			printf("Voce acertou!!!!!\n");
+			}
+			else if(o5 == 'a' || o5 == 'c')
+			{
+				printf("Voce errou ;-;\n");
+			}
+			else
+			{
+				printf("escolha uma da alternativas mostradas\n");	
+			}
+			
+			
+				
 		printf("Voce deseja recomecar?  1 (sim) e 0 (nao)");
 		scanf("%d",&n1);
 			
