@@ -76,7 +76,7 @@ do{
 			
 			printf("o ques significa as cores da barbearia (vermelho, azul e branco)?\n");
 			printf("a) barba, cabelo e bigode\n");
-			printf("b) tem relacao com a sangria e as vestimentas \n");
+			printf("b) tem relacao com a sangria e as suas vestimentas \n");
 			printf("c) as cores da bendeira estadunidense \n");
 			scanf(" %c",&o3);
 			if(o3 == 'b')
@@ -92,25 +92,25 @@ do{
 				printf("escolha uma da alternativas mostradas\n");	
 			}
 			
-			printf("quanto eh 1 + 1\n");
-			printf("a) 1\n");
-			printf("b) 2\n");
-			printf("c) 7\n");
+			printf("qual o nome do professor de programacao\n");
+			printf("a) PEDRO HENRIQUE TALES GIROTTO\n");
+			printf("b) PEDRO HENRIQUE SALES GIROTO\n");
+			printf("c) PEDRO HENRIQUE SALES GIROTTO\n");
 			scanf(" %c",&o2);
-			if(o4 == 'b')
+			if(o4 == 'c')
 			{
 			printf("Voce acertou!!!!!\n");
 			}
-			else if(o4 == 'a' || o4 == 'c')
+			else if(o4 == 'a' || o4 == 'b')
 			{
-				printf("Voce errou ;-;\n");
+				printf("Voce esta reprovado ;-;\n");
 			}
 			else
 			{
 				printf("escolha uma da alternativas mostradas\n");	
 			}
 			
-			printf("quanto eh 1 + 1\n");
+			printf("  \n");
 			printf("a) 1\n");
 			printf("b) 2\n");
 			printf("c) 7\n");
