@@ -1,236 +1,140 @@
 #include <stdio.h>
-#include <math.h>
 #include <stdlib.h>
-#include <time.h>
-#define NUM_NOMES 7
-#define NUM_OPCOES 5
 
-void mostrarNomes(const char nomes[NUM_NOMES][20]) {
-    printf("Nomes disponíveis:\n");
-    for (int i = 0; i < NUM_NOMES; i++) {
-        printf("%d - %s\n", i + 1, nomes[i]);
-    }
-}
+void jogo1();
 
-void mostrarOpcoes(int opcoesDisponiveis[NUM_OPCOES]) {
-    printf("Opções disponíveis:\n");
-    for (int i = 0; i < NUM_OPCOES; i++) {
-        if (opcoesDisponiveis[i]) {
-            printf("%d - Opcao %d\n", i + 1, i + 1);
+
+
+int main() {
+    int escolha;
+
+    while (1) { // Loop principal do menu
+        printf("\n=== Menu Principal ===\n");
+        printf("1 - perguntas e respostas \n");
+        printf("-------\n");
+        printf("------- \n");
+        printf("4 - Sair\n");
+        printf("Escolha uma opcao: ");
+        scanf("%d", &escolha);
+
+        switch (escolha) {
+            case 1: jogo1(); break;
+            
+            
+            case 4: printf("Saindo do jogo...\n"); return 0;
+            default: printf("Opcao invalida!\n");
         }
     }
 }
 
-int main(int argc, char** argv)
-{
-	int opcao1;
-    char o2, o1, o3, o4, o5;
-	int n1, n2, n3;
-	int return1, return2, return3;
-do{	
-do{
-	printf("1: Pergunta e resposta\n ");
-	printf("2: Cobra na caixa\n");
-	printf("3: Gousmas war\n");
-	printf("4: Sair\n");
-	scanf("%d",&opcao1);
-
-	if(opcao1 == 1)
-	{
-		do{
-			printf("quanto eh 1 + 1\n");
-			printf("a) 1\n");
-			printf("b) 2\n");
-			printf("c) 7\n");
-			scanf(" %c",&o2);
-			if(o2 == 'b')
-			{
-			printf("Voce acertou!!!!!\n");
-			}
-			else if(o2 == 'a' || o2 == 'c')
-			{
-				printf("Voce errou ;-;\n");
-			}
-			else
-			{
-				printf("escolha uma da alternativas mostradas\n");	
-			}
-		
-		printf("como surgiu o papai noel?\n");
-			printf("a) um grupo de caridade que dava presentes as pessoas \n");
-			printf("b) um velho do polo norte que entrega presentes pelo mundo \n");
-			printf("c) um bispo que entrgava presentes para as pessoas da sua cidade \n");
-			scanf(" %c",&o1);
-			if(o1 == 'c')
-			{
-			printf("Voce acertou!!!!!\n");
-			}
-			else if(o1 == 'a' || o1 == 'b')
-			{
-				printf("Voce errou ;-;\n");
-			}
-			else
-			{
-				printf("escolha uma da alternativas mostradas\n");	
-			}
-			
-			printf("o ques significa as cores da barbearia (vermelho, azul e branco)?\n");
-			printf("a) barba, cabelo e bigode\n");
-			printf("b) tem relacao com a sangria e as suas vestimentas \n");
-			printf("c) as cores da bendeira estadunidense \n");
-			scanf(" %c",&o3);
-			if(o3 == 'b')
-			{
-			printf("Voce acertou!!!!! --> antigamente se pensava que as pessoas com energias negativas ou nao estarem bem mentalmente ao fazerem cortes especificos no pulso e antebraco elas iriam melhorar  \n");
-			}
-			else if(o3 == 'a' || o3 == 'c')
-			{
-				printf("Voce errou ;-;\n");
-			}
-			else
-			{
-				printf("escolha uma da alternativas mostradas\n");	
-			}
-			
-			printf("qual o nome do professor de programacao\n");
-			printf("a) PEDRO HENRIQUE TALES GIROTTO\n");
-			printf("b) PEDRO HENRIQUE SALES GIROTO\n");
-			printf("c) PEDRO HENRIQUE SALES GIROTTO\n");
-			scanf(" %c",&o2);
-			if(o4 == 'c')
-			{
-			printf("Voce acertou!!!!!\n");
-			}
-			else if(o4 == 'a' || o4 == 'b')
-			{
-				printf("Voce esta reprovado ;-;\n");
-			}
-			else
-			{
-				printf("escolha uma da alternativas mostradas\n");	
-			}
-			
-			printf("  \n");
-			printf("a) 1\n");
-			printf("b) 2\n");
-			printf("c) 7\n");
-			scanf(" %c",&o5);
-			if(o5 == 'b')
-			{
-			printf("Voce acertou!!!!!\n");
-			}
-			else if(o5 == 'a' || o5 == 'c')
-			{
-				printf("Voce errou ;-;\n");
-			}
-			else
-			{
-				printf("escolha uma da alternativas mostradas\n");	
-			}
-			
-			
-				
-		printf("Voce deseja recomecar?  1 (sim) e 0 (nao)");
-		scanf("%d",&n1);
-			
-			
-		}
-		while(n1 == 1);
-	}	
-  printf("voce dejeja retornar ao lobby? 1(sim) 0(nao)" );
-  scanf("%d", &return1);		
- }while(return1 == 1);	
-			
- 
-	
-    if(opcao1 == 2){
-	do{
-    char nomes[NUM_NOMES][20] = {
-        "Alice" , "Bruno", "Carlos", "Diana", "Eduardo", "Fernanda", "Gabriel"
-    };
+void jogo1() {
+	char o1, o2, o3, o4, o5;
+    int opcao;
+    while (1) { // Loop da entrada 1
+        printf("\n--- perguntas e repostas ---\n");
     
-    int opcoesDisponiveis[NUM_OPCOES] = {1, 1, 1, 1, 1}; // Todas as opções disponíveis
-    
-    int escolhaJogador1, escolhaJogador2;
-    
-       // Jogador 1 escolhe um nome
-       mostrarNomes(nomes);
-        printf("Jogador 1, escolha um nome pelo numero: ");
-        scanf("%d", &escolhaJogador1);
-        escolhaJogador1--; // Ajustando para índice do array
+    int acertos = 0, erros = 0;
 
-        // Jogador 2 escolhe um nome
-        mostrarNomes(nomes);
-        printf("Jogador 2, escolha um nome pelo numero: ");
-        scanf("%d", &escolhaJogador2);
-        escolhaJogador2--; // Ajustando para índice do array
+    do {
+        printf("Quanto eh 1 + 1?\n");
+        printf("a) 1\n");
+        printf("b) 2\n");
+        printf("c) 7\n");
+        scanf(" %c", &o2);
+        if (o2 == 'b') {
+            printf("Voce acertou!!!!!\n");
+            acertos++;
+        } else if (o2 == 'a' || o2 == 'c') {
+            printf("Voce errou ;-; resposta letra ( b )\n");
+            erros++;
+        } else {
+            printf("Escolha uma das alternativas mostradas\n");
+        }
+    } while (o2 != 'a' && o2 != 'b' && o2 != 'c');
 
-        printf("\nJogador 1 escolheu: %s\n", nomes[escolhaJogador1]);
-        printf("Jogador 2 escolheu: %s\n", nomes[escolhaJogador2]);
+    do {
+        printf("Como surgiu o Papai Noel?\n");
+        printf("a) Um grupo de caridade que dava presentes\n");
+        printf("b) Um velho do Polo Norte que entrega presentes\n");
+        printf("c) Um bispo que entregava presentes\n");
+        scanf(" %c", &o1);
+        if (o1 == 'c') {
+            printf("Voce acertou!!!!!\n");
+            acertos++;
+        } else if (o1 == 'a' || o1 == 'b') {
+            printf("Voce errou ;-; resposta letra ( c )\n");
+            erros++;
+        } else {
+            printf("Escolha uma das alternativas mostradas\n");
+        }
+    } while (o1 != 'a' && o1 != 'b' && o1 != 'c');
+
+    do {
+        printf("O que significam as cores da barbearia (vermelho, azul e branco)?\n");
+        printf("a) Barba, cabelo e bigode\n");
+        printf("b) Sangria e as suas vestimentas\n");
+        printf("c) As cores da bandeira estadunidense\n");
+        scanf(" %c", &o3);
+        if (o3 == 'b') {
+            printf("Voce acertou!!!!!\n");
+            acertos++;
+        } else if (o3 == 'a' || o3 == 'c') {
+            printf("Voce errou ;-; resposta letra ( b )\n");
+            erros++;
+        } else {
+            printf("Escolha uma das alternativas mostradas\n");
+        }
+    } while (o3 != 'a' && o3 != 'b' && o3 != 'c');
+
+    do {
+        printf("Qual o nome do professor de programacao?\n");
+        printf("a) PEDRO HENRIQUE TALES GIROTTO\n");
+        printf("b) PEDRO HENRIQUE SALES GIROTO\n");
+        printf("c) PEDRO HENRIQUE SALES GIROTTO\n");
+        scanf(" %c", &o4);
+        if (o4 == 'c') {
+            printf("Voce acertou!!!!!\n");
+            acertos++;
+        } else if (o4 == 'a' || o4 == 'b') {
+            printf("Voce esta reprovado ;-; resposta letra ( C )\n");
+            erros++;
+        } else {
+            printf("Escolha uma das alternativas mostradas\n");
+        }
+    } while (o4 != 'a' && o4 != 'b' && o4 != 'c');
+
+    do {
+        printf("Qual era a cor do cavalo branco de Napoleao?\n");
+        printf("a) Cinza\n");
+        printf("b) Preto\n");
+        printf("c) Branco\n");
+        scanf(" %c", &o5);
+        if (o5 == 'c') {
+            printf("Voce acertou!!!!!\n");
+            acertos++;
+        } else if (o5 == 'a' || o5 == 'b') {
+            printf("Voce errou ;-; resposta letra ( c )\n");
+            erros++;
+        } else {
+            printf("Escolha uma das alternativas mostradas\n");
+        }
+    } while (o5 != 'a' && o5 != 'b' && o5 != 'c');
+
+    printf("\nResumo do Quiz:\n");
+    printf("Total de acertos: %d\n", acertos);
+    printf("Total de erros: %d\n", erros);
     
-    srand(time(NULL)); // Inicializa a semente para gerar números aleatórios diferentes a cada execução
-            int numero1 = (rand() % 5) + 1; // Gera um número entre 1 e 5
-            int numero2 = (rand() % 5)+ 1;
-            if(numero1 == numero2)
-       	    {
-    		    numero2 = (rand() % 5)+ 1;
-      	    }
-  	    
-        int turno = 1, escolha;
-    
-        // Jogo continua enquanto houver opções disponíveis
-        while (1) {
-            mostrarOpcoes(opcoesDisponiveis);
-            
-            printf("Jogador %d, escolha uma opcao pelo numero: ", turno);
-            scanf("%d", &escolha);
-            escolha--; // Ajuste de índice
-        
-            if(escolha == numero1){
-    		printf("o jogador  escolheu a cobra, voce perdeu\n");
-    		printf("o outro jogador levou o tesouro\n");	
-    		break;	
-    		}
-    		else if(escolha == numero2){
-    			printf("o jogador achou o botao e escapou da armadilha\n");
-    			break;
-			
-		
-    		}
-    		else if (escolha < 0 || escolha >= NUM_OPCOES || !opcoesDisponiveis[escolha]) {
-                printf("Opcao invalida! Escolha novamente.\n");
-                continue;
-        
-        
-            opcoesDisponiveis[escolha] = 0; // Removendo a opção escolhida
-        
-            // Verifica se todas as opções foram escolhidas
-            int opcoesRestantes = 0;
-            for (int i = 0; i < NUM_OPCOES; i++) {
-            if (opcoesDisponiveis[i]) {
-                opcoesRestantes = 1;
-                    break;
-                }
-            }
+        printf("1 - Recomeçar\n");
+        printf("0 - Voltar ao Menu\n");
+        printf("Escolha uma opcao: ");
+        scanf("%d", &opcao);
 
-             if (!opcoesRestantes) {
-                printf("Todas as opcoes foram escolhidas. Fim do jogo!\n");
-                 break;
-            }
-
-            turno = (turno == 1) ? 2 : 1; // Alternando entre os jogadores	
-		
-    		}  
-     	} 
-    	printf("voce deseja jogar de novo? 1(sim) 0 (nao)");
-    	scanf("%d", &n2);
-	
-   	}while(n2 == 1);
-	}
-printf("voce dejeja retornar ao lobby? 1(sim) 0(nao)" );
-scanf("%d", &return2);		
-}while(return2 == 1);			 
-        
-	
-	return 0;
-}
+        if (opcao == 0) return; // Volta ao menu
+        if (opcao == 1) {
+            printf("Reiniciando entrada 1...\n");
+            continue; // Reinicia a entrada
+        } else {
+            printf("Opcao invalida!\n");
+        }
+    }
+} 
