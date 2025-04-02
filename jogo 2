@@ -1,0 +1,105 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define NUM_NOMES 7
+#define NUM_OPCOES 5
+
+void mostrarNomes(const char nomes[NUM_NOMES][20]) {
+    printf("\nNomes disponiveis:\n");
+    for (int i = 0; i < NUM_NOMES; i++) {
+        printf("%d - %s\n", i + 1, nomes[i]);
+    }
+}
+
+void mostrarOpcoes(int opcoesDisponiveis[NUM_OPCOES]) {
+    printf("\nOpcoes disponiveis:\n");
+    for (int i = 0; i < NUM_OPCOES; i++) {
+        if (opcoesDisponiveis[i]) {
+            printf("%d - Opcao %d\n", i + 1, i + 1);
+        }
+    }
+}
+
+int main() {
+    char nomes[NUM_NOMES][20] = {
+        "Ratinho", "Silvio", "Elizabeth", "Raimundo", "Diop", "Lee", "Ezequiel"
+    };
+
+    int opcoesDisponiveis[NUM_OPCOES] = {1, 1, 1, 1, 1}; // Todas as opções disponíveis
+
+    int escolhaJogador1, escolhaJogador2;
+
+    // Jogador 1 escolhe um nome
+    mostrarNomes(nomes);
+    printf("\nJogador 1, escolha um nome pelo numero: ");
+    scanf("%d", &escolhaJogador1);
+    escolhaJogador1--; // Ajustando para índice do array
+
+    // Jogador 2 escolhe um nome
+    mostrarNomes(nomes);
+    printf("\nJogador 2, escolha um nome pelo numero: ");
+    scanf("%d", &escolhaJogador2);
+    escolhaJogador2--; // Ajustando para índice do array
+
+    printf("\nJogador 1 escolheu: %s\n", nomes[escolhaJogador1]);
+    printf("Jogador 2 escolheu: %s\n", nomes[escolhaJogador2]);
+
+    // Inicializa números aleatórios
+    srand(time(NULL));
+    int numero1 = (rand() % NUM_OPCOES) + 1;
+    int numero2;
+
+    do {
+        numero2 = (rand() % NUM_OPCOES) + 1;
+    } while (numero1 == numero2);
+
+    int turno = 1, escolha;
+
+    // Jogo continua enquanto houver opções disponíveis
+    while (1) {
+        mostrarOpcoes(opcoesDisponiveis);
+        
+        // Exibe o jogador atual pelo nome
+        printf("\n%s, escolha uma opcao pelo numero: ", turno == 1 ? nomes[escolhaJogador1] : nomes[escolhaJogador2]);
+        scanf("%d", &escolha);
+        escolha--; // Ajuste de índice
+
+        if (escolha < 0 || escolha >= NUM_OPCOES || !opcoesDisponiveis[escolha]) {
+            printf("Opcao invalida! Escolha novamente.\n");
+            continue;
+        }
+
+        // Verifica eventos especiais
+        if (escolha + 1 == numero1) {
+            printf("\n%s escolheu a cobra, voce perdeu!\n", turno == 1 ? nomes[escolhaJogador1] : nomes[escolhaJogador2]);
+            printf("O outro jogador levou o tesouro!\n");
+            break;
+        } else if (escolha + 1 == numero2) {
+            printf("\n%s achou o botao e escapou da armadilha!\n", turno == 1 ? nomes[escolhaJogador1] : nomes[escolhaJogador2]);
+            break;
+        }
+
+        // Remove a opção escolhida
+        opcoesDisponiveis[escolha] = 0;
+
+        // Verifica se todas as opções foram escolhidas
+        int opcoesRestantes = 0;
+        for (int i = 0; i < NUM_OPCOES; i++) {
+            if (opcoesDisponiveis[i]) {
+                opcoesRestantes = 1;
+                break;
+            }
+        }
+
+        if (!opcoesRestantes) {
+            printf("\nTodas as opcoes foram escolhidas. Fim do jogo!\n");
+            break;
+        }
+
+        // Alterna turno entre jogadores
+        turno = (turno == 1) ? 2 : 1;
+    }
+
+    return 0;
+}
