@@ -23,11 +23,11 @@ int main() {
         }
         printf("\n\n");
 
-        printf("Turno do Jogador %d. Escolha uma ação:\n", turno);
-        printf("1 - Atacar\n2 - Transferir Fúria\n3 - Sair\n");
+        printf("Turno do Jogador %d. Escolha uma acao:\n", turno);
+        printf("1 - Atacar\n2 - Transferir Furia\n3 - Sair\n");
         
         if (scanf("%d", &opcao) != 1) {
-            printf("Entrada inválida!\n");
+            printf("Entrada invalida!\n");
             while (getchar() != '\n'); 
             continue;
         }
@@ -35,20 +35,20 @@ int main() {
         if (opcao == 1) {
             printf("Escolha sua Gousma (1 ou 2): ");
             if (scanf("%d", &id_origem) != 1 || id_origem < 1 || id_origem > MAX_GOUSMAS) {
-                printf("Entrada inválida!\n");
+                printf("Entrada invalida!\n");
                 while (getchar() != '\n');
                 continue;
             }
             printf("Escolha a Gousma do oponente para atacar (1 ou 2): ");
             if (scanf("%d", &id_destino) != 1 || id_destino < 1 || id_destino > MAX_GOUSMAS) {
-                printf("Entrada inválida!\n");
+                printf("Entrada invalida!\n");
                 while (getchar() != '\n');
                 continue;
             }
 
             if (turno == 1) {
                 if (gousmas_jogador1[id_origem - 1] <= 0 || gousmas_jogador2[id_destino - 1] <= 0) {
-                    printf("Ataque inválido!\n");
+                    printf("Ataque invalido!\n");
                     continue;
                 }
                 gousmas_jogador2[id_destino - 1] += gousmas_jogador1[id_origem - 1];
@@ -59,7 +59,7 @@ int main() {
                 }
             } else {
                 if (gousmas_jogador2[id_origem - 1] <= 0 || gousmas_jogador1[id_destino - 1] <= 0) {
-                    printf("Ataque inválido!\n");
+                    printf("Ataque invalido!\n");
                     continue;
                 }
                 gousmas_jogador1[id_destino - 1] += gousmas_jogador2[id_origem - 1];
@@ -73,13 +73,13 @@ int main() {
         } else if (opcao == 2) {
             printf("Escolha a Gousma de origem (1 ou 2): ");
             if (scanf("%d", &id_origem) != 1 || id_origem < 1 || id_origem > MAX_GOUSMAS) {
-                printf("Entrada inválida!\n");
+                printf("Entrada invalida!\n");
                 while (getchar() != '\n');
                 continue;
             }
             printf("Escolha a Gousma de destino (1 ou 2): ");
             if (scanf("%d", &id_destino) != 1 || id_destino < 1 || id_destino > MAX_GOUSMAS || id_origem == id_destino) {
-                printf("Entrada inválida!\n");
+                printf("Entrada invalida!\n");
                 while (getchar() != '\n');
                 continue;
             }
@@ -87,21 +87,21 @@ int main() {
             int *jogador_atual = (turno == 1) ? gousmas_jogador1 : gousmas_jogador2;
             
             if (jogador_atual[id_origem - 1] <= 0) {
-                printf("Transferência impossível!\n");
+                printf("Transferencia impossivel!\n");
                 continue;
             }
 
             int quantidade;
-            printf("Digite a quantidade de fúria para transferir: ");
+            printf("Digite a quantidade de furia para transferir: ");
             if (scanf("%d", &quantidade) != 1 || quantidade <= 0 || quantidade > jogador_atual[id_origem - 1]) {
-                printf("Quantidade inválida!\n");
+                printf("Quantidade invalida!\n");
                 while (getchar() != '\n');
                 continue;
             }
 
             jogador_atual[id_origem - 1] -= quantidade;
             jogador_atual[id_destino - 1] += quantidade;
-            printf("Transferência realizada com sucesso!\n");
+            printf("Transferencia realizada com sucesso!\n");
 
         } else if (opcao == 3) {
             printf("Jogo encerrado!\n");
