@@ -1,89 +1,30 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 
-#define MAX_GOUSMAS 2 // Por jogador 
-#define FURIA_MAX 5   // Por gousmas 
+#define MAX_GOUSMAS 2  
+#define FURIA_MAX 5    
 
-typedef struct {
-    int furia;
-    int ativa;
-} Gousma;
-
-typedef struct {
-    Gousma gousmas[MAX_GOUSMAS]; 
-} Jogador;
-
-void inicializar_jogador(Jogador *jogador) {
-    for (int i = 0; i < MAX_GOUSMAS; i++) {
-        jogador->gousmas[i].furia = 1;
-        jogador->gousmas[i].ativa = 1;
-    }
-}
-
-void mostrar_estado(Jogador *jogador1, Jogador *jogador2) {
-    printf("\nEstado Atual:\n");
-    printf("Jogador 1: ");
-    for (int i = 0; i < MAX_GOUSMAS; i++) {
-        printf("[Gousma %d: %s Furia %d] ", i + 1, jogador1->gousmas[i].furia > 0 ? "Ativa" : "Morta", jogador1->gousmas[i].furia);
-    }
-    printf("\nJogador 2: ");
-    for (int i = 0; i < MAX_GOUSMAS; i++) {
-        printf("[Gousma %d: %s Furia %d] ", i + 1, jogador2->gousmas[i].furia > 0 ? "Ativa" : "Morta", jogador2->gousmas[i].furia);
-    }
-    printf("\n\n");
-}
-
-void atacar(Jogador *atacante, Jogador *defensor, int id_atacante, int id_defensor) {
-    if (atacante->gousmas[id_atacante].furia <= 0 || defensor->gousmas[id_defensor].furia <= 0) {
-        printf("Ataque inválido!\n");
-        return;
-    }
-    
-    defensor->gousmas[id_defensor].furia += atacante->gousmas[id_atacante].furia;
-    printf("Ataque realizado!\n");
-    
-    if (defensor->gousmas[id_defensor].furia > FURIA_MAX) {
-        defensor->gousmas[id_defensor].furia = 0;
-        printf("Gousma %d do defensor morreu!\n", id_defensor + 1);
-    }
-}
-
-void transferir_furia(Gousma *gousma1, Gousma *gousma2) {
-    if (gousma1->furia <= 0) {
-        printf("Transferência impossível!\n");
-        return;
-    }
-    
-    int quantidade;
-    printf("Digite a quantidade de fúria para transferir: ");
-    if (scanf("%d", &quantidade) != 1 || quantidade <= 0 || quantidade > gousma1->furia) {
-        printf("Quantidade inválida!\n");
-        while (getchar() != '\n'); // Limpa o buffer
-        return;
-    }
-    
-    gousma1->furia -= quantidade;
-    gousma2->furia += quantidade;
-    printf("Transferência realizada com sucesso!\n");
-}
-
-int verificar_derrota(Jogador *jogador) {
-    return (jogador->gousmas[0].furia == 0 && jogador->gousmas[1].furia == 0);
-}
-
-void jogar() {
-    Jogador jogador1, jogador2;
-    inicializar_jogador(&jogador1);
-    inicializar_jogador(&jogador2);
+int main() {
+    int gousmas_jogador1[MAX_GOUSMAS] = {1, 1};
+    int gousmas_jogador2[MAX_GOUSMAS] = {1, 1};
     
     int turno = 1;
+    int opcao, id_origem, id_destino;
+    
     while (1) {
-        mostrar_estado(&jogador1, &jogador2);
-        
+        printf("\nEstado Atual:\n");
+        printf("Jogador 1: ");
+        for (int i = 0; i < MAX_GOUSMAS; i++) {
+            printf("[Gousma %d: %s Furia %d] ", i + 1, gousmas_jogador1[i] > 0 ? "Ativa" : "Morta", gousmas_jogador1[i]);
+        }
+        printf("\nJogador 2: ");
+        for (int i = 0; i < MAX_GOUSMAS; i++) {
+            printf("[Gousma %d: %s Furia %d] ", i + 1, gousmas_jogador2[i] > 0 ? "Ativa" : "Morta", gousmas_jogador2[i]);
+        }
+        printf("\n\n");
+
         printf("Turno do Jogador %d. Escolha uma ação:\n", turno);
         printf("1 - Atacar\n2 - Transferir Fúria\n3 - Sair\n");
-        int opcao, id_origem, id_destino;
         
         if (scanf("%d", &opcao) != 1) {
             printf("Entrada inválida!\n");
@@ -104,7 +45,31 @@ void jogar() {
                 while (getchar() != '\n');
                 continue;
             }
-            atacar(turno == 1 ? &jogador1 : &jogador2, turno == 1 ? &jogador2 : &jogador1, id_origem - 1, id_destino - 1);
+
+            if (turno == 1) {
+                if (gousmas_jogador1[id_origem - 1] <= 0 || gousmas_jogador2[id_destino - 1] <= 0) {
+                    printf("Ataque inválido!\n");
+                    continue;
+                }
+                gousmas_jogador2[id_destino - 1] += gousmas_jogador1[id_origem - 1];
+                printf("Ataque realizado!\n");
+                if (gousmas_jogador2[id_destino - 1] > FURIA_MAX) {
+                    gousmas_jogador2[id_destino - 1] = 0;
+                    printf("Gousma %d do Jogador 2 morreu!\n", id_destino);
+                }
+            } else {
+                if (gousmas_jogador2[id_origem - 1] <= 0 || gousmas_jogador1[id_destino - 1] <= 0) {
+                    printf("Ataque inválido!\n");
+                    continue;
+                }
+                gousmas_jogador1[id_destino - 1] += gousmas_jogador2[id_origem - 1];
+                printf("Ataque realizado!\n");
+                if (gousmas_jogador1[id_destino - 1] > FURIA_MAX) {
+                    gousmas_jogador1[id_destino - 1] = 0;
+                    printf("Gousma %d do Jogador 1 morreu!\n", id_destino);
+                }
+            }
+
         } else if (opcao == 2) {
             printf("Escolha a Gousma de origem (1 ou 2): ");
             if (scanf("%d", &id_origem) != 1 || id_origem < 1 || id_origem > MAX_GOUSMAS) {
@@ -118,40 +83,42 @@ void jogar() {
                 while (getchar() != '\n');
                 continue;
             }
-            transferir_furia(&(turno == 1 ? jogador1 : jogador2).gousmas[id_origem - 1], &(turno == 1 ? jogador1 : jogador2).gousmas[id_destino - 1]);
+
+            int *jogador_atual = (turno == 1) ? gousmas_jogador1 : gousmas_jogador2;
+            
+            if (jogador_atual[id_origem - 1] <= 0) {
+                printf("Transferência impossível!\n");
+                continue;
+            }
+
+            int quantidade;
+            printf("Digite a quantidade de fúria para transferir: ");
+            if (scanf("%d", &quantidade) != 1 || quantidade <= 0 || quantidade > jogador_atual[id_origem - 1]) {
+                printf("Quantidade inválida!\n");
+                while (getchar() != '\n');
+                continue;
+            }
+
+            jogador_atual[id_origem - 1] -= quantidade;
+            jogador_atual[id_destino - 1] += quantidade;
+            printf("Transferência realizada com sucesso!\n");
+
         } else if (opcao == 3) {
             printf("Jogo encerrado!\n");
             break;
         }
         
-        if (verificar_derrota(&jogador1)) {
+        if ((gousmas_jogador1[0] == 0 && gousmas_jogador1[1] == 0)) {
             printf("Jogador 2 venceu!\n");
             break;
         }
-        if (verificar_derrota(&jogador2)) {
+        if ((gousmas_jogador2[0] == 0 && gousmas_jogador2[1] == 0)) {
             printf("Jogador 1 venceu!\n");
             break;
         }
         
         turno = (turno == 1) ? 2 : 1;
     }
-}
-
-int main() {
-    int opcao;
-    while (1) {
-        printf("\nGousmas War - Menu Principal\n");
-        printf("1 - Jogar\n2 - Sair\n");
-        if (scanf("%d", &opcao) != 1) {
-            printf("Entrada inválida!\n");
-            while (getchar() != '\n');
-            continue;
-        }
-        if (opcao == 1) {
-            jogar();
-        } else {
-            break;
-        }
-    }
+    
     return 0;
 }
