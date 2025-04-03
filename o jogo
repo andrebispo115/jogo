@@ -1,1 +1,400 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
+#define NUM_NOMES 7
+#define NUM_OPCOES 5
+
+#define MAX_GOUSMAS 2 // Por jogador 
+#define FURIA_MAX 5   // Por gousmas 
+
+void mostrarNomes(const char nomes[NUM_NOMES][20]) {
+    printf("Nomes disponiveis:\n");
+    for (int i = 0; i < NUM_NOMES; i++) {
+        printf("%d - %s\n", i + 1, nomes[i]);
+    }
+}
+
+void mostrarOpcoes(int opcoesDisponiveis[NUM_OPCOES]) {
+    printf("Opcoes disponiveis:\n");
+    for (int i = 0; i < NUM_OPCOES; i++) {
+        if (opcoesDisponiveis[i]) {
+            printf("%d - Opcao %d\n", i + 1, i + 1);
+        }
+    }
+}
+
+
+void jogo1();
+void jogo2();
+void jogo3();
+
+int main() {
+    int escolha;
+
+    while (1) { // Loop principal do menu
+        printf("\n=== Menu Principal ===\n");
+        printf("1 - perguntas e respostas \n");
+        printf("2 - cobrana caixa\n");
+        printf("3 - gousmas war \n");
+        printf("4 - Sair\n");
+        printf("Escolha uma opcao: ");
+        scanf("%d", &escolha);
+
+        switch (escolha) {
+            case 1: jogo1(); break;
+            case 2: jogo2(); break;
+            case 3: jogo3(); break;
+            case 4: printf("Saindo do jogo...\n"); return 0;
+            default: printf("Opcao invalida!\n");
+        }
+    }
+}
+
+void jogo1() {
+	char o1, o2, o3, o4, o5;
+    int opcao;
+    while (1) { // Loop da entrada 1
+        printf("\n--- perguntas e repostas ---\n");
+    
+    int acertos = 0, erros = 0;
+
+    do {
+        printf("Quanto eh 1 + 1?\n");
+        printf("a) 1\n");
+        printf("b) 2\n");
+        printf("c) 7\n");
+        scanf(" %c", &o2);
+        if (o2 == 'b') {
+            printf("Voce acertou!!!!!\n");
+            acertos++;
+        } else if (o2 == 'a' || o2 == 'c') {
+            printf("Voce errou ;-; resposta letra ( b )\n");
+            erros++;
+        } else {
+            printf("Escolha uma das alternativas mostradas\n");
+        }
+    } while (o2 != 'a' && o2 != 'b' && o2 != 'c');
+
+    do {
+        printf("Como surgiu o Papai Noel?\n");
+        printf("a) Um grupo de caridade que dava presentes\n");
+        printf("b) Um velho do Polo Norte que entrega presentes\n");
+        printf("c) Um bispo que entregava presentes\n");
+        scanf(" %c", &o1);
+        if (o1 == 'c') {
+            printf("Voce acertou!!!!!\n");
+            acertos++;
+        } else if (o1 == 'a' || o1 == 'b') {
+            printf("Voce errou ;-; resposta letra ( c )\n");
+            erros++;
+        } else {
+            printf("Escolha uma das alternativas mostradas\n");
+        }
+    } while (o1 != 'a' && o1 != 'b' && o1 != 'c');
+
+    do {
+        printf("O que significam as cores da barbearia (vermelho, azul e branco)?\n");
+        printf("a) Barba, cabelo e bigode\n");
+        printf("b) Sangria e as suas vestimentas\n");
+        printf("c) As cores da bandeira estadunidense\n");
+        scanf(" %c", &o3);
+        if (o3 == 'b') {
+            printf("Voce acertou!!!!!\n");
+            acertos++;
+        } else if (o3 == 'a' || o3 == 'c') {
+            printf("Voce errou ;-; resposta letra ( b )\n");
+            erros++;
+        } else {
+            printf("Escolha uma das alternativas mostradas\n");
+        }
+    } while (o3 != 'a' && o3 != 'b' && o3 != 'c');
+
+    do {
+        printf("Qual o nome do professor de programacao?\n");
+        printf("a) PEDRO HENRIQUE TALES GIROTTO\n");
+        printf("b) PEDRO HENRIQUE SALES GIROTO\n");
+        printf("c) PEDRO HENRIQUE SALES GIROTTO\n");
+        scanf(" %c", &o4);
+        if (o4 == 'c') {
+            printf("Voce acertou!!!!!\n");
+            acertos++;
+        } else if (o4 == 'a' || o4 == 'b') {
+            printf("Voce esta reprovado ;-; resposta letra ( C )\n");
+            erros++;
+        } else {
+            printf("Escolha uma das alternativas mostradas\n");
+        }
+    } while (o4 != 'a' && o4 != 'b' && o4 != 'c');
+
+    do {
+        printf("Qual era a cor do cavalo branco de Napoleao?\n");
+        printf("a) Cinza\n");
+        printf("b) Preto\n");
+        printf("c) Branco\n");
+        scanf(" %c", &o5);
+        if (o5 == 'c') {
+            printf("Voce acertou!!!!!\n");
+            acertos++;
+        } else if (o5 == 'a' || o5 == 'b') {
+            printf("Voce errou ;-; resposta letra ( c )\n");
+            erros++;
+        } else {
+            printf("Escolha uma das alternativas mostradas\n");
+        }
+    } while (o5 != 'a' && o5 != 'b' && o5 != 'c');
+
+    printf("\nResumo do Quiz:\n");
+    printf("Total de acertos: %d\n", acertos);
+    printf("Total de erros: %d\n", erros);
+    
+        printf("1 - Recomeçar\n");
+        printf("0 - Voltar ao Menu\n");
+        printf("Escolha uma opcao: ");
+        scanf("%d", &opcao);
+
+        if (opcao == 0) return; // Volta ao menu
+        if (opcao == 1) {
+            printf("Reiniciando entrada 1...\n");
+            continue; // Reinicia a entrada
+        } else {
+            printf("Opcao invalida!\n");
+        }
+    }
+}
+
+void jogo2() {
+    int opcao;
+    while (1) {
+        printf("\n--- cobra na caixa ---\n");
+        
+        char nomes[NUM_NOMES][20] = {
+        "Ratinho", "Silvio", "Elizabeth", "Raimundo", "Diop", "Lee", "Ezequiel"
+    };
+
+    int opcoesDisponiveis[NUM_OPCOES] = {1, 1, 1, 1, 1}; // Todas as opções disponíveis
+
+    int escolhaJogador1, escolhaJogador2;
+
+    // Jogador 1 escolhe um nome
+    mostrarNomes(nomes);
+    printf("\nJogador 1, escolha um nome pelo numero: ");
+    scanf("%d", &escolhaJogador1);
+    escolhaJogador1--; // Ajustando para índice do array
+
+    // Jogador 2 escolhe um nome
+    mostrarNomes(nomes);
+    printf("\nJogador 2, escolha um nome pelo numero: ");
+    scanf("%d", &escolhaJogador2);
+    escolhaJogador2--; // Ajustando para índice do array
+
+    printf("\nJogador 1 escolheu: %s\n", nomes[escolhaJogador1]);
+    printf("Jogador 2 escolheu: %s\n", nomes[escolhaJogador2]);
+
+    // Inicializa números aleatórios
+    srand(time(NULL));
+    int numero1 = (rand() % NUM_OPCOES) + 1;
+    int numero2;
+
+    do {
+        numero2 = (rand() % NUM_OPCOES) + 1;
+    } while (numero1 == numero2);
+
+    int turno = 1, escolha;
+
+    // Jogo continua enquanto houver opções disponíveis
+    while (1) {
+        mostrarOpcoes(opcoesDisponiveis);
+        
+        // Exibe o jogador atual pelo nome
+        printf("\n%s, escolha uma opcao pelo numero: ", turno == 1 ? nomes[escolhaJogador1] : nomes[escolhaJogador2]);
+        scanf("%d", &escolha);
+        escolha--; // Ajuste de índice
+
+        if (escolha < 0 || escolha >= NUM_OPCOES || !opcoesDisponiveis[escolha]) {
+            printf("Opcao invalida! Escolha novamente.\n");
+            continue;
+        }
+
+        // Verifica eventos especiais
+        if (escolha + 1 == numero1) {
+            printf("\n%s escolheu a cobra, voce perdeu!\n", turno == 1 ? nomes[escolhaJogador1] : nomes[escolhaJogador2]);
+            printf("O outro jogador levou o tesouro!\n");
+            break;
+        } else if (escolha + 1 == numero2) {
+            printf("\n%s achou o botao e escapou da armadilha!\n", turno == 1 ? nomes[escolhaJogador1] : nomes[escolhaJogador2]);
+            break;
+        }
+
+        // Remove a opção escolhida
+        opcoesDisponiveis[escolha] = 0;
+
+        // Verifica se todas as opções foram escolhidas
+        int opcoesRestantes = 0;
+        for (int i = 0; i < NUM_OPCOES; i++) {
+            if (opcoesDisponiveis[i]) {
+                opcoesRestantes = 1;
+                break;
+            }
+        }
+
+        if (!opcoesRestantes) {
+            printf("\nTodas as opcoes foram escolhidas. Fim do jogo!\n");
+            break;
+        }
+
+        // Alterna turno entre jogadores
+        turno = (turno == 1) ? 2 : 1;
+    }
+
+    
+    
+        
+        printf("1 - Recomeçar\n");
+        printf("0 - Voltar ao Menu\n");
+        printf("Escolha uma opcao: ");
+        scanf("%d", &opcao);
+
+        if (opcao == 0) return;
+        if (opcao == 1) {
+            printf("Reiniciando entrada 2...\n");
+            continue;
+        } else {
+            printf("Opcao invalida!\n");
+        }
+    }
+}
+
+void jogo3() {
+    int opcao;
+    while (1) {
+        printf("\n--- gousmas war ---\n");
+
+    int gousmas_jogador1[MAX_GOUSMAS] = {1, 1};
+    int gousmas_jogador2[MAX_GOUSMAS] = {1, 1};
+    
+    int turno = 1;
+    int opcao, id_origem, id_destino;
+    
+    while (1) {
+        printf("\nEstado Atual:\n");
+        printf("Jogador 1: ");
+        for (int i = 0; i < MAX_GOUSMAS; i++) {
+            printf("[Gousma %d: %s Furia %d] ", i + 1, gousmas_jogador1[i] > 0 ? "Ativa" : "Morta", gousmas_jogador1[i]);
+        }
+        printf("\nJogador 2: ");
+        for (int i = 0; i < MAX_GOUSMAS; i++) {
+            printf("[Gousma %d: %s Furia %d] ", i + 1, gousmas_jogador2[i] > 0 ? "Ativa" : "Morta", gousmas_jogador2[i]);
+        }
+        printf("\n\n");
+
+        printf("Turno do Jogador %d. Escolha uma ação:\n", turno);
+        printf("1 - Atacar\n2 - Transferir Fúria\n3 - Sair\n");
+        
+        if (scanf("%d", &opcao) != 1) {
+            printf("Entrada inválida!\n");
+            while (getchar() != '\n'); 
+            continue;
+        }
+        
+        if (opcao == 1) {
+            printf("Escolha sua Gousma (1 ou 2): ");
+            if (scanf("%d", &id_origem) != 1 || id_origem < 1 || id_origem > MAX_GOUSMAS) {
+                printf("Entrada inválida!\n");
+                while (getchar() != '\n');
+                continue;
+            }
+            printf("Escolha a Gousma do oponente para atacar (1 ou 2): ");
+            if (scanf("%d", &id_destino) != 1 || id_destino < 1 || id_destino > MAX_GOUSMAS) {
+                printf("Entrada inválida!\n");
+                while (getchar() != '\n');
+                continue;
+            }
+
+            if (turno == 1) {
+                if (gousmas_jogador1[id_origem - 1] <= 0 || gousmas_jogador2[id_destino - 1] <= 0) {
+                    printf("Ataque inválido!\n");
+                    continue;
+                }
+                gousmas_jogador2[id_destino - 1] += gousmas_jogador1[id_origem - 1];
+                printf("Ataque realizado!\n");
+                if (gousmas_jogador2[id_destino - 1] > FURIA_MAX) {
+                    gousmas_jogador2[id_destino - 1] = 0;
+                    printf("Gousma %d do Jogador 2 morreu!\n", id_destino);
+                }
+            } else {
+                if (gousmas_jogador2[id_origem - 1] <= 0 || gousmas_jogador1[id_destino - 1] <= 0) {
+                    printf("Ataque inválido!\n");
+                    continue;
+                }
+                gousmas_jogador1[id_destino - 1] += gousmas_jogador2[id_origem - 1];
+                printf("Ataque realizado!\n");
+                if (gousmas_jogador1[id_destino - 1] > FURIA_MAX) {
+                    gousmas_jogador1[id_destino - 1] = 0;
+                    printf("Gousma %d do Jogador 1 morreu!\n", id_destino);
+                }
+            }
+
+        } else if (opcao == 2) {
+            printf("Escolha a Gousma de origem (1 ou 2): ");
+            if (scanf("%d", &id_origem) != 1 || id_origem < 1 || id_origem > MAX_GOUSMAS) {
+                printf("Entrada inválida!\n");
+                while (getchar() != '\n');
+                continue;
+            }
+            printf("Escolha a Gousma de destino (1 ou 2): ");
+            if (scanf("%d", &id_destino) != 1 || id_destino < 1 || id_destino > MAX_GOUSMAS || id_origem == id_destino) {
+                printf("Entrada inválida!\n");
+                while (getchar() != '\n');
+                continue;
+            }
+
+            int *jogador_atual = (turno == 1) ? gousmas_jogador1 : gousmas_jogador2;
+            
+            if (jogador_atual[id_origem - 1] <= 0) {
+                printf("Transferência impossível!\n");
+                continue;
+            }
+
+            int quantidade;
+            printf("Digite a quantidade de fúria para transferir: ");
+            if (scanf("%d", &quantidade) != 1 || quantidade <= 0 || quantidade > jogador_atual[id_origem - 1]) {
+                printf("Quantidade inválida!\n");
+                while (getchar() != '\n');
+                continue;
+            }
+
+            jogador_atual[id_origem - 1] -= quantidade;
+            jogador_atual[id_destino - 1] += quantidade;
+            printf("Transferência realizada com sucesso!\n");
+
+        } else if (opcao == 3) {
+            printf("Jogo encerrado!\n");
+            break;
+        }
+        
+        if ((gousmas_jogador1[0] == 0 && gousmas_jogador1[1] == 0)) {
+            printf("Jogador 2 venceu!\n");
+            break;
+        }
+        if ((gousmas_jogador2[0] == 0 && gousmas_jogador2[1] == 0)) {
+            printf("Jogador 1 venceu!\n");
+            break;
+        }
+        
+        turno = (turno == 1) ? 2 : 1;
+    }
+        
+        printf("1 - Recomeçar\n");
+        printf("0 - Voltar ao Menu\n");
+        printf("Escolha uma opcao: ");
+        scanf("%d", &opcao);
+        if (opcao == 0) return;
+        if (opcao == 1) {
+            printf("Reiniciando entrada 3...\n");
+        continue;
+        } else {
+            printf("Opcao invalida!\n");
+        }
+    }
+ }
