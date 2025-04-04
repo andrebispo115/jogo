@@ -44,3 +44,4 @@ fúria para uma nova Gousma.
 
 
 //CHAT GPT UTILIZADO PARA COREÇAO DE BUGS.
+FALCON C++ FOI UTILIZADO.
