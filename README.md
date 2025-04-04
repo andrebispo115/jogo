@@ -41,3 +41,6 @@ para a Gousma atacada.
 ● O jogador pode optar por dividir uma Gousma, transferindo uma parte da
 fúria para uma nova Gousma.
 ● O jogador que perder todas as suas Gousmas será derrotado.
+
+
+//CHAT GPT UTILIZADO PARA COREÇAO DE BUGS.
